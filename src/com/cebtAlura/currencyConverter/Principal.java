@@ -13,10 +13,11 @@ public class Principal {
     public static void main(String[] args) throws IOException, InterruptedException {
         String address;
         String apiKey = "d86ac12f1e7a75ad40c7ce88";
+        Conversor menuConverter = new Conversor();
 
         //API connection
         HttpClient client = HttpClient.newHttpClient();
-
+        //Address to ExchangeRate-API
         address = "https://v6.exchangerate-api.com/v6/"+apiKey+"/latest/USD";
 
         //Request to API connection
@@ -24,17 +25,18 @@ public class Principal {
                 .uri(URI.create(address))   //Specify the URL address
                 .build();                   //Completes the construction of the request and returns the complete object.
 
-        //Creation of Gson object
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
-
         //Send a request to the API, receive the format in string
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         //Creation a variable to save the information returned by API
         String json = response.body();
         System.out.println(json);
 
+        menuConverter.Menu();
+
+        //Creation of Gson object
+        /*Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();*/
         /*converter kindMoney = gson.fromJson(json, converter.class);
         System.out.println("Conversion" + kindMoney);*/
     }
