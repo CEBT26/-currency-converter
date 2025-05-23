@@ -1,7 +1,6 @@
 package com.cebtAlura.currencyConverter;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,9 +10,8 @@ import java.net.http.HttpResponse;
 
 public class Principal {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String address;
-        String apiKey = "d86ac12f1e7a75ad40c7ce88";
-        Conversor menuConverter = new Conversor();
+        String address;                             //URL address
+        String apiKey = "d86ac12f1e7a75ad40c7ce88"; //API key
 
         //API connection
         HttpClient client = HttpClient.newHttpClient();
@@ -29,15 +27,18 @@ public class Principal {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         //Creation a variable to save the information returned by API
         String json = response.body();
-        System.out.println(json);
-
-        menuConverter.Menu();
+        //System.out.println(json);
 
         //Creation of Gson object
-        /*Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();*/
-        /*converter kindMoney = gson.fromJson(json, converter.class);
-        System.out.println("Conversion" + kindMoney);*/
+        Gson gson = new Gson();
+            //Record to receive the external objects
+        exchangeApiInformation kindCurency = gson.fromJson(json, exchangeApiInformation.class);
+        //Record to receive the internal objects
+        converter convertionCurrency = kindCurency.conversion_rates();
+        //System.out.println(convertionCurrency);
+
+        //Principally object
+        Conversor menuConverter = new Conversor(convertionCurrency);
+        menuConverter.Menu();
     }
 }
