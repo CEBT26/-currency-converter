@@ -4,13 +4,21 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Conversor {
-    private double URS;
+    private double ARS;
     private double BRL;
     private double COP;
+
+    public Conversor(converter currency)
+    {
+        this.ARS = currency.ARS();
+        this.BRL = currency.BRL();
+        this.COP = currency.COP();
+    }
 
     public static void Menu(){
         Scanner keyboard = new Scanner(System.in);
         double option = 0;
+        int auxOption;
 
         System.out.println("\t\t*** Welcome to Currency converter ;) ***");
         System.out.println("\nMenu options: ");
@@ -24,9 +32,12 @@ public class Conversor {
 
         System.out.println("Choose an option: ");
         option = keyboard.nextDouble();
+        auxOption = (int)option;
 
         System.out.println("Enter the amount to convert: ");
         option = keyboard.nextDouble();
+
+
 
     }
 }

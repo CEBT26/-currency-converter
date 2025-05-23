@@ -12,7 +12,6 @@ public class Principal {
     public static void main(String[] args) throws IOException, InterruptedException {
         String address;
         String apiKey = "d86ac12f1e7a75ad40c7ce88";
-        Conversor menuConverter = new Conversor();
 
         //API connection
         HttpClient client = HttpClient.newHttpClient();
@@ -28,14 +27,15 @@ public class Principal {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         //Creation a variable to save the information returned by API
         String json = response.body();
-        System.out.println(json);
+        //System.out.println(json);
 
         //Creation of Gson object
         Gson gson = new Gson();
         exchangeApiInformation kindCurency = gson.fromJson(json, exchangeApiInformation.class);
         converter convertionCurrency = kindCurency.conversion_rates();
-        System.out.println(convertionCurrency);
+        //System.out.println(convertionCurrency);
 
+        Conversor menuConverter = new Conversor(convertionCurrency);
         menuConverter.Menu();
 
         //Creation of Gson object
