@@ -4,7 +4,9 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Conversor {
-    
+    private double URS;
+    private double BRL;
+    private double COP;
 
     public static void Menu(){
         Scanner keyboard = new Scanner(System.in);

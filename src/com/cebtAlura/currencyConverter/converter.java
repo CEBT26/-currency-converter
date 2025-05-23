@@ -5,6 +5,5 @@ package com.cebtAlura.currencyConverter;
     Peso argentino (ARS), Boliviano (BOB), Real brasileño (BRL),
     Peso chileno (CLP) y Peso colombiano (COP).
  */
-public record converter(double USD, double ARS, double BOB, double BRL, double CLP,
-                        double COP) {
+public record converter(double ARS, double BRL, double COP) {
 }

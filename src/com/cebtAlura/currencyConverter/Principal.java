@@ -1,7 +1,6 @@
 package com.cebtAlura.currencyConverter;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -30,6 +29,12 @@ public class Principal {
         //Creation a variable to save the information returned by API
         String json = response.body();
         System.out.println(json);
+
+        //Creation of Gson object
+        Gson gson = new Gson();
+        exchangeApiInformation kindCurency = gson.fromJson(json, exchangeApiInformation.class);
+        converter convertionCurrency = kindCurency.conversion_rates();
+        System.out.println(convertionCurrency);
 
         menuConverter.Menu();
 
